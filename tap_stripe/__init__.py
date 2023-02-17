@@ -625,7 +625,7 @@ def sync_stream(stream_name, is_sub_stream=False):
         sub_stream_bookmark = None
 
     with Transformer(singer.UNIX_SECONDS_INTEGER_DATETIME_PARSING) as transformer:
-        end_time = dt_to_epoch(utils.now())
+        end_time = Context.config.get('end_time', dt_to_epoch(utils.now()))
 
         window_size = Context.window_size
 
